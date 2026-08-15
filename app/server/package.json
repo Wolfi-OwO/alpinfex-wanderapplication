@@ -12,28 +12,28 @@
     "author": "Phillip Kofler <koflerphillip@outlook.com>",
     "license": "MIT",
     "dependencies": {
-        "@we-gold/gpxjs": "^1.0.12",
+        "@we-gold/gpxjs": "^1.2.0",
         "assert": "^2.1.0",
-        "cors": "^2.8.5",
+        "cors": "^2.8.6",
         "cross-env": "^7.0.3",
-        "dotenv": "^16.4.5",
-        "express": "^4.21.0",
-        "mongoose": "^8.9.1",
+        "dotenv": "^16.6.1",
+        "express": "^4.22.2",
+        "mongoose": "^8.24.3",
         "multer": "^1.4.5-lts.1",
         "node-cache": "^5.1.2",
-        "sharp": "^0.33.5",
-        "winston": "^3.15.0",
+        "sharp": "^0.35.3",
+        "winston": "^3.19.0",
         "xml2js": "^0.6.2"
     },
     "devDependencies": {
-        "@types/cors": "^2.8.17",
+        "@types/cors": "^2.8.19",
         "@types/express": "^5.0.0",
         "@types/mocha": "^10.0.10",
         "@types/mongoose": "^5.11.96",
         "@types/multer": "^1.4.12",
-        "@types/supertest": "^6.0.2",
+        "@types/supertest": "^7.2.1",
         "mocha": "^10.7.3",
-        "nodemon": "^3.1.4",
-        "supertest": "^7.0.0"
+        "nodemon": "^3.1.14",
+        "supertest": "^7.2.2"
     }
 }
