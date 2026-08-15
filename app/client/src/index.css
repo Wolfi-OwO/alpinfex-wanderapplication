@@ -1,0 +1,107 @@
+
+.leaflet-container {
+  width: 100vh;
+  height: 63vh;
+  margin: 0;
+  padding: 0;
+}
+
+.leaflet-control-attribution {
+  display: none;
+}
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 300;
+  font-style: normal;
+
+  line-height: 1.5;
+  display: inline;
+  width: 100%;
+  height: 100vh;
+
+  color: rgba(0, 0, 0, 0.87);
+  background-color: #ffffff;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+main * {
+  color: black !important;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+      monospace;
+}
+
+/* Allgemeine Scrollbar-Stile */
+::-webkit-scrollbar {
+  width: 12px;
+  /* Breite der vertikalen Scrollbar */
+  height: 12px;
+  /* Height of the horizontal scrollbar */
+}
+
+/* Track (Hintergrund der Scrollbar) */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  /* Hellgrauer Hintergrund */
+  border-radius: 10px;
+  /* Abgerundete Ecken */
+}
+
+/* Handle (der bewegliche Teil der Scrollbar) */
+::-webkit-scrollbar-thumb {
+  background: #888;
+  /* Graue Farbe */
+  border-radius: 10px;
+  /* Abgerundete Ecken */
+  border: 3px solid #f1f1f1;
+  /* Rand, um den Handle vom Track zu trennen */
+}
+
+/* Handle bei Hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+  /* Dunkleres Grau bei Hover */
+}
+
+/* Firefox scrollbar (Firefox only) */
+* {
+  scrollbar-width: 20px;
+  /* Thin scrollbar */
+  scrollbar-color: #888 #f1f1f1;
+  /* Farbe des Handles und des Tracks */
+}
+
+.home {
+  height: calc(100vh - 120px); /* Adjust based on your header and footer height */
+}
+
+.toursContainer {
+  height: 100%;
+  padding: 1rem;
+}
+
+.tourCard {
+  margin: 0.5rem;
+}
+
+.home {
+  margin-bottom: 28px;
+}
+
+.home > div.body {
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+}
+
+.carousel-caption > span:hover {
+    background-color: #3f3f3fb0;
+    transition: background-color 250ms ease-in-out;
+}
