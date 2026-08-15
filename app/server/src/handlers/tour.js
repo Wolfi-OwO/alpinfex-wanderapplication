@@ -119,24 +119,30 @@ const handlePost = async (req, res) => {
         const savedTour = await newTour.save();
         res.status(201).location(`/api/tours/${savedTour['_id']}`).json(savedTour);
     } catch (err) {
+        log(`Error when creating tour! ${err}`, 'error');
 
-        if (err instanceof Mongoose.Error.ValidationError) {
-            log(`Error when creating tour! ${err}`, 'error');
+        // Bad input is the client's fault, not the server's. Mongoose reports it
+        // as a ValidationError; validateRequestFiles tags its own errors with
+        // status 400. Without the second check every rejected upload — a missing
+        // GPX file, a non-numeric rating — came back as a 500.
+        if (err instanceof Mongoose.Error.ValidationError || err.status === 400) {
             return res.status(400).json({
                 'status-code': 400,
                 message: `${err.message}`,
             });
-        } else {
-            log(`Error when creating tour! ${err}`, 'error');
-            return res.status(500).json({
-                'status-code': 500,
-                message: `${err.message}`,
-            });
         }
 
-       
+        return res.status(500).json({
+            'status-code': 500,
+            message: `${err.message}`,
+        });
     }
 };
+
+// Reject bad input with a 400 rather than letting it surface as a server error.
+function validationError(message) {
+    return Object.assign(new Error(message), { status: 400 });
+}
 
 // Validate the uploaded files
 async function validateRequestFiles(body) {
@@ -145,31 +151,31 @@ async function validateRequestFiles(body) {
         (body?.xml_file?.mimetype !== 'application/gpx+xml' &&
             body.xml_file.mimetype !== 'application/octet-stream')
     ) {
-        throw new Error('Validation failed: no xml file uploaded!');
+        throw validationError('Validation failed: no xml file uploaded!');
     }
 
     if (
         body.content.ids == null
     ) {
-        throw new Error('Validation failed: no imageIds provided!');
+        throw validationError('Validation failed: no imageIds provided!');
     }
 
     try {
         await tryParsingIntegers(body.content.technique);
     } catch {
-        throw new Error('Validation failed: technique must be a Number!');
+        throw validationError('Validation failed: technique must be a Number!');
     }
 
     try {
         await tryParsingIntegers(body.content.condition);
     } catch {
-        throw new Error('Validation failed: condition must be a Number');
+        throw validationError('Validation failed: condition must be a Number');
     }
 
     try {
         await tryParsingIntegers(body.content.duration);
     } catch {
-        throw new Error('Validation failed: duration must be a Number');
+        throw validationError('Validation failed: duration must be a Number');
     }
 }
 

@@ -6,6 +6,7 @@
 tour profile with elevation data, distance, difficulty and a photo gallery, rendered
 on an interactive map.**
 
+[![CI](https://github.com/Wolfi-OwO/alpinfex-wanderapplication/actions/workflows/ci.yml/badge.svg)](https://github.com/Wolfi-OwO/alpinfex-wanderapplication/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](./LICENSE)
 ![React](https://img.shields.io/badge/React-18-61dafb?logo=react&logoColor=black)
 ![Vite](https://img.shields.io/badge/Vite-6-646cff?logo=vite&logoColor=white)
@@ -40,7 +41,7 @@ with elevation details, and hosts a photo gallery per tour.
 | Frontend | React 18, Vite 6, React Router 7, Leaflet, Bootstrap 5 |
 | Backend  | Node.js, Express 4, Multer, Sharp, xml2js, `@we-gold/gpxjs` |
 | Database | MongoDB (Mongoose 8) |
-| Tooling  | ESLint 9, Prettier, Mocha (server tests), GitLab CI |
+| Tooling  | ESLint 9, Prettier, Mocha (server tests), GitHub Actions |
 
 ## Architecture overview
 

@@ -1,4 +1,4 @@
-import { createBrowserRouter, Route } from 'react-router-dom';
+import { createBrowserRouter } from 'react-router-dom';
 
 import ErrorPage from './layouts/errorpage/ErrorPage.jsx';
 import RegularLayout from './layouts/regularlayout/RegularLayout.jsx';

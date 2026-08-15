@@ -1,0 +1,8 @@
+# Normalize line endings to LF for all text files.
+* text=auto eol=lf
+
+# GPX is XML; keep it diffable rather than letting Git guess from the extension.
+*.gpx text
+
+# Generated lockfiles: collapse them in diffs and reviews.
+package-lock.json linguist-generated=true

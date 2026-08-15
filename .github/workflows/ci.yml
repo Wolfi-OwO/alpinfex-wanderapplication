@@ -1,0 +1,77 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  server:
+    name: Server (Node 20)
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: app/server
+
+    services:
+      mongo:
+        image: mongo:7
+        ports:
+          - 27017:27017
+        # The suite talks to a live database from the first test, so the job has
+        # to wait until mongod actually answers, not just until the container
+        # exists.
+        options: >-
+          --health-cmd "mongosh --quiet --eval 'db.adminCommand({ ping: 1 })'"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 10
+
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: app/server/package-lock.json
+
+      - run: npm ci
+
+      - name: Run tests
+        # The test script pins the same connection string through cross-env; it is
+        # repeated here so the database the job provides is visible in the config.
+        env:
+          MONGO_URL: mongodb://localhost:27017/TestTours
+        run: npm test
+
+  client:
+    name: Client (Node 20)
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: app/client
+
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: app/client/package-lock.json
+
+      - run: npm ci
+
+      - run: npm run lint
+
+      - run: npm run build

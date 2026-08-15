@@ -2,6 +2,9 @@
   "name": "client",
   "private": true,
   "version": "0.0.0",
+  "description": "React/Vite frontend for the Alpinfex tour dashboard: tour catalog, Leaflet map and photo gallery.",
+  "author": "Phillip Kofler <koflerphillip@outlook.com>",
+  "license": "MIT",
   "type": "module",
   "scripts": {
     "dev": "vite",

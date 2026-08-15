@@ -24,6 +24,9 @@ function TourOverview() {
             });
     }, [id]);
 
+    // A 404 from the API used to be swallowed: error was set but never rendered, so an
+    // unknown tour id left the page stuck on "Loading ..." forever.
+    if (error) return <Container><p>{error.message}</p></Container>;
     if (!tour) return <Container><p>Loading ...</p></Container>;
 
     return (

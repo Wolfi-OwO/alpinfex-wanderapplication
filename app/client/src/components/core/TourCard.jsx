@@ -1,13 +1,12 @@
 import { Card, Col, Container, Row } from "react-bootstrap";
 import PropTypes from 'prop-types';
 import {
-    ArrowsFullscreen,
     ArrowUp,
     ArrowDown,
     Clock,
     ArrowsVertical,
     ArrowLeftRight
-} from 'react-bootstrap-icons'; // Import der benötigten Bootstrap-Icons
+} from 'react-bootstrap-icons';
 import { useNavigate } from "react-router-dom";
 
 export default function TourCard({ tour }) {

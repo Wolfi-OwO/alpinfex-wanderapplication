@@ -1,0 +1,55 @@
+version: 2
+
+# Monthly, grouped, one open PR per ecosystem. The project is archived, so
+# majors are a decision someone has to make, not a chore to merge.
+updates:
+  - package-ecosystem: npm
+    directory: /app/server
+    schedule:
+      interval: monthly
+    open-pull-requests-limit: 1
+    labels:
+      - dependencies
+    commit-message:
+      prefix: chore
+      include: scope
+    groups:
+      server:
+        patterns: ["*"]
+    ignore:
+      - dependency-name: "*"
+        update-types: [version-update:semver-major]
+
+  - package-ecosystem: npm
+    directory: /app/client
+    schedule:
+      interval: monthly
+    open-pull-requests-limit: 1
+    labels:
+      - dependencies
+    commit-message:
+      prefix: chore
+      include: scope
+    groups:
+      client:
+        patterns: ["*"]
+    ignore:
+      - dependency-name: "*"
+        update-types: [version-update:semver-major]
+
+  - package-ecosystem: github-actions
+    # Action bumps are always major (v4 -> v5), so a semver-major ignore here
+    # would mean they never update and deprecation warnings become hard
+    # failures on GitHub's schedule. Majors stay ignored for npm, where they
+    # are real migrations.
+    directory: /
+    schedule:
+      interval: monthly
+    open-pull-requests-limit: 1
+    labels:
+      - ci
+    commit-message:
+      prefix: ci
+    groups:
+      github-actions:
+        patterns: ["*"]

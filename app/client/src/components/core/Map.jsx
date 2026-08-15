@@ -1,26 +1,10 @@
-import { MapContainer, Marker, Polyline, Popup, TileLayer } from 'react-leaflet';
-import { useEffect, useState } from 'react';
+import { MapContainer, Polyline, TileLayer } from 'react-leaflet';
 import { Container } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import 'leaflet/dist/leaflet.css';
 import 'leaflet/dist/leaflet.js';
 
 function Map_Comp({ gpx }) {
-
-    useEffect(() => {
-        const parse = async () => {
-            if (gpx.routes[0].points.length > 0) {
-                const startPoint = gpx.routes[0].points[0];
-                const endPoint = gpx.routes[0].points[Math.floor(gpx.routes[0].points.length / 2)];
-
-            }
-        };
-        parse();
-
-    }, []);
-
-
-
     return (
         <Container className='leaflet-map m-0 p-0' fluid>
             <MapContainer

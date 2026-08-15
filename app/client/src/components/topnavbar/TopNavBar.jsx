@@ -7,7 +7,6 @@ import {
     Row,
     Col,
     Offcanvas,
-    NavDropdown,
 } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 import propTypes from 'prop-types';
@@ -16,7 +15,7 @@ import './TopNavBar.css';
 
 export default function TopNavBar({ admin }) {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
-    const [profile, _] = useState({
+    const [profile] = useState({
         uniqueProfileId: '1',
     });
 
